@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
-#define PASSWORD_LENGTH 9
+#define PASSWORD_LENGTH 14
 
 /**
  * main - Entry point of the program
@@ -11,20 +12,20 @@
  */
 int main(void)
 {
-	char password[PASSWORD_LENGTH + 1];
-	int i;
+    char password[PASSWORD_LENGTH + 1] = "Tada! Congrats";
 
-	srand(time(0));
+    srand(time(0));
 
-	for (i = 0; i < PASSWORD_LENGTH; i++)
-	{
-		password[i] = rand() % 94 + 33; /* Generate a random character in the ASCII range 33-126 */
-	}
+    // Generate random characters for remaining positions in the password
+    for (int i = strlen(password); i < PASSWORD_LENGTH; i++)
+    {
+        password[i] = rand() % 94 + 33; // Generate a random character in the ASCII range 33-126
+    }
 
-	password[PASSWORD_LENGTH] = '\0'; /* Null-terminate the password */
+    password[PASSWORD_LENGTH] = '\0'; // Null-terminate the password
 
-	printf("%s\n", password);
+    printf("%s\n", password);
 
-	return (0);
+    return 0;
 }
 
