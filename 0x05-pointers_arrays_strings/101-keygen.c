@@ -5,29 +5,53 @@
 #define PASSWORD_LENGTH 13
 
 /**
- * main - Entry point of the program
- *
- * Return: 0 on success
+ * main - Generate random valid passwords for the
+ *program 101-crackme.
+ * Return: Alwas  0. 
  */
 int main(void)
 {
-	char password[PASSWORD_LENGTH + 1];
-	const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	int i;
+	char password[84];
+	int index = 0,diff_half1, diff_half2;
+	srand(time(0));
+	while (sum< 2772)
+{
+	password[index] = 33 + rand() % 94;
+	sum += password[index++]
+}
+password[index] = '\0';
+if (sum != 2772)
+	diff_half1 = (sum - 2772) / 2;
+	diff_half2 = (sum - 2772) / 2;
 
-	srand(time(NULL));
+	if ((sum - 2772) % 2 != 0)
+	diff_half1++;
 
-	for (i = 0; i < PASSWORD_LENGTH; i++)
+	for (index = 0; password[index];index++)
 	{
-		int index = rand() % (sizeof(charset) - 1);
-		password[i] = charset[index];
+		if (password[index] >= (33 + diff_half1))
+		{
+			password[index] -= diff-half1;
+			break;
+		}
 	}
-
-	password[PASSWORD_LENGTH] = '\0'; /* Null-terminate the password */
-
-	printf("Tada! Congrats\n");
-	printf("%s\n", password);
-
+for (index = 0; password[index]; index++)
+{
+	if (password[index] >= (33 + diff_half2))
+	{
+password[inddex] -= diff_half1;
+					break;
+	}
+}
+	for (index = 0; password[index]; index++)
+	{
+		if (password[index] >= (33 + diff_half2))
+		{
+			password[index] -= diff_half2;
+			break;
+		}
+	}
+}
+	printf("%s", password);
 	return (0);
 }
-
