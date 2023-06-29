@@ -2,15 +2,14 @@
 #include <stdio.h>
 
 /**
- * rot13 - encoder rot13
- * @s: pointer to string params
- * return: *S
+ * rot13 - Encodes a string using ROT13 encryption.
+ * @s: Pointer to the string to be encoded.
+ *
+ * Return: Pointer to the resulting encoded string.
  */
-
 char *rot13(char *s)
 {
-	int i;
-       	int j;
+	int i, j;
 	char data1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char datarot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
