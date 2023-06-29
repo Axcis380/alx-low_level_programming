@@ -2,28 +2,28 @@
 #include <stdio.h>
 
 /**
- * rot13 - Encodes a string using ROT13 encryption.
- * @s: The input string to be encoded.
+ * main - check the code
  *
- * Return: A pointer to the encoded string.
+ * Return: Always 0.
  */
 char *rot13(char *s)
 {
-	char *ptr = s;
-	int i;
+	int i, j;
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	while (*ptr)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		for (i = 0; (*ptr >= 'A' && *ptr <= 'Z') || (*ptr >= 'a' && *ptr <= 'z'); i++)
+		for (j = 0; a[j] != '\0'; j++)
 		{
-			if ((*ptr >= 'A' && *ptr <= 'M') || (*ptr >= 'a' && *ptr <= 'm'))
-				*ptr += 13;
-			else
-				*ptr -= 13;
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
 		}
-		ptr++;
 	}
 
-	return s;
+	return (s);
 }
 
