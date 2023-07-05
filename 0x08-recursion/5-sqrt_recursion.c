@@ -1,62 +1,33 @@
-#include <stdio.h>
+#include "main.h"
+
+int actual_sqrt_recursion(int n, int i);
 
 /**
- * _sqrt_recursion_wrapper - a wrapper that does the recursion bit
+ * _sqrt_recursion - returns the natural square root of a number
+ * @n: number to calculate the square root of
  *
- * @n : input number
- * @min: minimum number to guess
- * @max: maximum number to guess
- *
- * Return: square root of @n or -1
-*/
-int _sqrt_recursion_wrapper(int n, int min, int max)
-{
-    if (min > max)  /* If the range of values is invalid, return -1 */
-        return -1;
-
-    long int guess = (min + max) / 2;              /* Get an estimation (guess) */
-    long int guess_squared = guess * guess;        /* Square the guess */
-
-    if (guess_squared == n)                         /* If the squared guess is equal to n, return the guess */
-        return guess;
-    else if (guess_squared < n)                     /* If the squared guess is less than n, recursion with a higher range */
-        return _sqrt_recursion_wrapper(n, guess + 1, max);
-    else                                            /* If the squared guess is greater than n, recursion with a lower range */
-        return _sqrt_recursion_wrapper(n, min, guess - 1);
-}
-
-/**
- * _sqrt_recursion - a function that returns the natural
- *                   square root of a number
- *
- * @n: input number
- *
- * Return: square root
-*/
+ * Return: the resulting square root
+ */
 int _sqrt_recursion(int n)
 {
-    if (n < 0)       /* If n is negative, return -1 */
-        return -1;
-
-    return _sqrt_recursion_wrapper(n, 0, n); /* Call the recursion function with a valid range */
+	if (n < 0)
+		return (-1);
+	return (actual_sqrt_recursion(n, 0));
 }
 
-int main(void)
+/**
+ * actual_sqrt_recursion - recurses to find the natural
+ * square root of a number
+ * @n: number to calculate the sqaure root of
+ * @i: iterator
+ *
+ * Return: the resulting square root
+ */
+int actual_sqrt_recursion(int n, int i)
 {
-    int r;
-
-    r = _sqrt_recursion(1);
-    printf("%d\n", r);
-    r = _sqrt_recursion(1024);
-    printf("%d\n", r);
-    r = _sqrt_recursion(16);
-    printf("%d\n", r);
-    r = _sqrt_recursion(17);
-    printf("%d\n", r);
-    r = _sqrt_recursion(25);
-    printf("%d\n", r);
-    r = _sqrt_recursion(16777216);
-    printf("%d\n", r);
-    return 0;
+	if (i * i > n)
+		return (-1);
+	if (i * i == n)
+		return (i);
+	return (actual_sqrt_recursion(n, i + 1));
 }
-
