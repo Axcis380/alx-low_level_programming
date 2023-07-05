@@ -11,20 +11,20 @@
  */
 int _sqrt_recursion_wrapper(int n, int min, int max)
 {
-    int guess;  /* Declare the variable 'guess' at the top of the code block */
-    int guess_squared;  /* Declare the variable 'guess_squared' */
+    int guess;
+    int guess_squared;
 
-    if (min > max)  /* If the range of values is invalid, return -1 */
+    if (min > max)
         return -1;
 
-    guess = (min + max) / 2;  /* Get an estimation (guess) */
-    guess_squared = guess * guess;  /* Square the guess */
+    guess = (min + max) / 2;
+    guess_squared = guess * guess;
 
-    if (guess_squared == n)  /* If the squared guess is equal to n, return the guess */
+    if (guess_squared == n)
         return guess;
-    else if (guess_squared < n)  /* If the squared guess is less than n, recurse with an upper range */
+    else if (guess_squared < n)
         return _sqrt_recursion_wrapper(n, guess + 1, max);
-    else  /* If the squared guess is greater than n, recurse with a lower range */
+    else
         return _sqrt_recursion_wrapper(n, min, guess - 1);
 }
 
@@ -37,9 +37,9 @@ int _sqrt_recursion_wrapper(int n, int min, int max)
  */
 int _sqrt_recursion(int n)
 {
-    if (n < 0)  /* If n is negative, return -1 */
+    if (n < 0)
         return -1;
 
-    return _sqrt_recursion_wrapper(n, 0, n);  /* Call the recursion function with a valid range */
+    return _sqrt_recursion_wrapper(n, 1, n);
 }
 
