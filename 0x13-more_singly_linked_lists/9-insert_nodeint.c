@@ -1,53 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - a function that inserts a new node at
- *                           a given position
+ * insert_nodeint_at_index - Inserts a new node at a given position
+ * @head: Pointer to the head of the linked list
+ * @idx: Index where the new node should be added (starting from 0)
+ * @n: Value to be set in the new node
  *
- * @head: pointer to the first node of the list
- * @idx: is the index of the list where the new node should be added
- * @n: element to add to the new node
- *
- * Return: NULL if anything fails or the address of the new node
+ * Return: The address of the new node, or NULL if it failed.
 */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
 	listint_t *new_node, *current;
-	unsigned int index;
+	unsigned int i;
 
-	current = *head; /*place first node at current*/
-
-	new_node = malloc(sizeof(listint_t));
-	if ((*head == NULL && idx != 0) || new_node == NULL)
+	if (head == NULL)
 		return (NULL);
 
-	new_node->n = n; /* add our element to the new node*/
+	new_node = malloc(sizeof(listint_t));
+	if (new_node == NULL)
+		return (NULL);
 
-	/*iterate list to node position idx - 2*/
-	for (index = 0; head != NULL && index < idx - 1; index++)
-	{
-		current = current->next;
-		if (current == NULL)
-			return (NULL);
-	}
+	new_node->n = n;
 
-	if (idx == 0) /*if the index for new node is 0*/
+	if (idx == 0)
 	{
-		/*first node will be moved to second node*/
 		new_node->next = *head;
-		/*new node will be placed as the first node*/
 		*head = new_node;
+		return (new_node);
 	}
-	else if (current->next) /*if index where to add our new node is not 0*/
+
+	current = *head;
+	for (i = 0; i < idx - 1; i++)
 	{
-		new_node->next = current->next; /*place current node after new node*/
-		current->next = new_node;/*set the new node at index idx*/
+		if (current == NULL)
+		{
+			free(new_node);
+			return (NULL); /* Index out of range */
+		}
+		current = current->next;
 	}
-	else /*if node position is not present in the list*/
+
+	if (current == NULL)
 	{
-		new_node->next = NULL;/*set next addr as NULL, indicates last node*/
-		current->next = new_node;/*set the new node at the last position in list*/
+		free(new_node);
+		return (NULL); /* Index out of range */
 	}
+
+	new_node->next = current->next;
+	current->next = new_node;
 
 	return (new_node);
 }
