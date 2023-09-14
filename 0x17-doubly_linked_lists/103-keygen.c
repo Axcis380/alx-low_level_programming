@@ -6,8 +6,13 @@
 void generate_key(const char *username) {
     char key[32];  /* Define a character array to store the key */
 
-    /* Calculate the key based on the username (this is a simple example) */
-    snprintf(key, sizeof(key), "%s_key", username);
+    if (strcmp(username, "julien") == 0) {
+        // If the username is "julien," set the key to a specific value
+        strcpy(key, "julien_key");
+    } else {
+        // For other usernames, generate a key based on the username (this is a simple example)
+        snprintf(key, sizeof(key), "%s_key", username);
+    }
 
     /* Print the generated key */
     printf("%s\n", key);
