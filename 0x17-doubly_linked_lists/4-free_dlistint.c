@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 /**
- * free_dlistint - free a list
- * @head: list
+ * free_dlistint - Frees a doubly linked list.
+ * @head: Pointer to the head of the list.
  * Return: Void
  */
 

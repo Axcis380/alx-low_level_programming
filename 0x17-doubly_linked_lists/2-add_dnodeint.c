@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 /**
- * add_dnodeint - add new element at beginiing of list
- * @head: pointer
- * @n: element in list
- * Return: new Element
+ * add_dnodeint - Adds a new element at the beginning of a doubly linked list.
+ * @head: Pointer to a pointer to the head of the list.
+ * @n: The integer value to be added to the list.
+ * Return: Pointer to the new element.
  */
 
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)

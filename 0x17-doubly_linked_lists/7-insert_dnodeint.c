@@ -1,13 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lists.h"
+
 /**
- * create_dnode - creates new node
- * @n: data of node
- * @prev: link to prev node
- * @next: link to next node
- * Return: pointer to new node
+ * create_dnode - Creates a new doubly linked node.
+ * @n: The data to be stored in the new node.
+ * @prev: Pointer to the previous node.
+ * @next: Pointer to the next node.
+ * Return: Pointer to the newly created node.
  */
+
+
 dlistint_t *create_dnode(int n, dlistint_t *prev, dlistint_t *next)
 {
 	dlistint_t *new;
@@ -20,13 +23,16 @@ dlistint_t *create_dnode(int n, dlistint_t *prev, dlistint_t *next)
 	new->next = next;
 	return (new);
 }
+
 /**
- * insert_dnodeint_at_index - inserts a new node at a given position
- * @h: head of doubly-linked list
- * @idx: index for insertion of new node
- * @n: data for new node
- * Return: address of new node or NULL if error
+ * insert_dnodeint_at_index - Inserts a new node at a given position in a doubly linked list.
+ * @h: Pointer to the head of the doubly linked list.
+ * @idx: The index for insertion of the new node.
+ * @n: The data for the new node.
+ * Return: Address of the new node, or NULL if an error occurs.
  */
+
+
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	dlistint_t *curr = *h, *localPrev = NULL;
