@@ -1,10 +1,10 @@
 #include "lists.h"
 
 /**
- * get_dnodeint_at_index - Retrieves a node from a doubly linked list 
- * @head: Pointer to the head of the list.
- * @index: The index of the desired element.
- * Return: Pointer to the node at the specified index, or NULL if not found.
+ * get_dnodeint_at_index - get node by index
+ * @head: list
+ * @index: index of element
+ * Return: element by index
  */
 
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
