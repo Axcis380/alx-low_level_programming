@@ -2,25 +2,52 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* Func to gen valid key for a giv usr */
-void generate_key(const char *username) {
-    char key[32];  /* Def char array to str key */
+/**
+ * main - Generates and prints passwords for the crackme5 executable.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ *
+ * Return: Always 0.
+ */
+int main(int __attribute__((__unused__)) argc, char *argv[])
+{
+	char password[7], *codex;
+	int len = strlen(argv[1]), i, tmp;
 
-    /* Calcul the key based on the usr */
-    snprintf(key, sizeof(key), "%s_key", username);
+	codex = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
-    /* Prnt the gen key */
-    printf("%s\n", key);
-}
+	tmp = (len ^ 59) & 63;
+	password[0] = codex[tmp];
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s username\n", argv[0]);
-        return 1;
-    }
+	tmp = 0;
+	for (i = 0; i < len; i++)
+		tmp += argv[1][i];
+	password[1] = codex[(tmp ^ 79) & 63];
 
-    /* Call the key gen func with the prov usr */
-    generate_key(argv[1]);
+	tmp = 1;
+	for (i = 0; i < len; i++)
+		tmp *= argv[1][i];
+	password[2] = codex[(tmp ^ 85) & 63];
 
-    return 0;
+	tmp = 0;
+	for (i = 0; i < len; i++)
+	{
+		if (argv[1][i] > tmp)
+			tmp = argv[1][i];
+	}
+	srand(tmp ^ 14);
+	password[3] = codex[rand() & 63];
+
+	tmp = 0;
+	for (i = 0; i < len; i++)
+		tmp += (argv[1][i] * argv[1][i]);
+	password[4] = codex[(tmp ^ 239) & 63];
+
+	for (i = 0; i < argv[1][0]; i++)
+		tmp = rand();
+	password[5] = codex[(tmp ^ 229) & 63];
+
+	password[6] = '\0';
+	printf("%s", password);
+	return (0);
 }
