@@ -1,48 +1,73 @@
 #include "lists.h"
 #include <stdlib.h>
-/**
- * delete_dnodeint_at_index - Deletes a node at a given index in a doubly linked list.
- * @head: Double pointer to the head of the list.
- * @index: The index of the node to delete (starting from 0).
- * Return: 1 if successful, -1 if failed.
- */
 
+/**
+ * delete_dnodeint_at_index - delete node at given index
+ * @head: pointer to the list
+ * @index: given index
+ * Return: -1 or 0
+ */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-    dlistint_t *current, *temp;
-    unsigned int i = 0;
+	dlistint_t *start;
+	unsigned int i;
+	unsigned int len;
 
-    if (*head == NULL)
-        return (-1);
+	len = len_node(head);
+	start = *head;
 
-    current = *head;
+	if (*head == NULL)
+		return (-1);
 
-    if (index == 0)
-    {
-        *head = current->next;
-        if (current->next)
-            current->next->prev = NULL;
-        free(current);
-        return (1);
-    }
+	if (index == 0)
+	{
+		start = start->next;
+		free(*head);
+		*head = start;
 
-    while (i < index - 1)
-    {
-        if (current->next == NULL)
-            return (-1);
-        current = current->next;
-        i++;
-    }
+		if (start != NULL)
+			start->prev = NULL;
 
-    if (current->next == NULL)
-        return (-1);
+		return (1);
+	}
 
-    temp = current->next;
-    current->next = temp->next;
-    if (temp->next)
-        temp->next->prev = current;
-    free(temp);
+	for (i = 0; i <= index - 1; i++)
+	{
+		start = start->next;
+		if (!start)
+			return (-1);
+	}
 
-    return (1);
+	if (len - 1 == index)
+	{
+		start->prev->next = NULL;
+		free(start);
+		return (1);
+	}
+
+	start->prev->next = start->next;
+	start->next->prev = start->prev;
+	free(start);
+	return (1);
 }
 
+/**
+ * len_node - calculate list length
+ * @node: pointer to the list
+ * Return: unsigned int
+ */
+unsigned int len_node(dlistint_t **node)
+{
+	unsigned int len = 0;
+	dlistint_t *start;
+
+	start = *node;
+
+	while (start != NULL)
+	{
+		len += 1;
+		start = start->next;
+	}
+
+	return (len);
+}
